@@ -1,0 +1,26 @@
+button {
+  display: flex;
+  width: 200px;
+  text-align: center;
+  border: 5px solid springgreen;
+  align-items: center;
+  justify-content: center;
+  font-family: "Segoe UI", Tahoma;
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+  padding-top: 10%;
+  gap: 20px;
+  text-align: center;
+  padding: auto;
+}
+.results {
+  margin-top: 30px;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
