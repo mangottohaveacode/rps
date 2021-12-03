@@ -24,17 +24,17 @@ const computerTurn = () => {
 
 const theGame = (playerChoice, computerSelection) => {
     let playerSelection = playerChoice.toLowerCase();
-    if(playerSelection === "rock" && computerSelection === "paper"){
+    if(playerSelection === rock && computerSelection === paper){
         return computerWinner;
-    }else if(playerSelection === "rock" && computerSelection === "scissors"){
+    }else if(playerSelection === rock && computerSelection === scissors){
         return playerWinner;
-    }else if(playerSelection === "paper" && computerSelection === "scissors"){
+    }else if(playerSelection === paper && computerSelection === scissors){
         return computerWinner;
-    }else if (playerSelection === "paper" && computerSelection === "rock"){
+    }else if (playerSelection === paper && computerSelection === rock){
         return playerWinner;
-    }else if(playerSelection === "scissors" && computerSelection === "rock"){
+    }else if(playerSelection === scissors && computerSelection === rock){
         return computerWinner;
-    }else if(playerSelection === "scissors" && computerSelection === "paper"){
+    }else if(playerSelection === scissors && computerSelection === paper){
         return playerWinner;
     }else { 
         return drawWinner;
@@ -44,20 +44,32 @@ const theGame = (playerChoice, computerSelection) => {
 const gameDiv = document.querySelector("#game");
 gameDiv.classList.add("buttons");
 
-const button1 = document.createElement("BUTTON");
-gameDiv.appendChild(button1);
-button1.textContent = "ROCK"
-button1.setAttribute("id", "rock")
+const rockButton = document.createElement("BUTTON");
+gameDiv.appendChild(rockButton);
+rockButton.textContent = rock.toLocaleUpperCase();
+rockButton.setAttribute("id", "rock");
+rockButton.addEventListener("click", () => {
+    playerTurn = rock;
+    playerAction();
+});
 
-const button2 = document.createElement("BUTTON");
-button2.textContent = "PAPER";
-gameDiv.appendChild(button2);
-button2.setAttribute("id", "paper")
+const paperButton = document.createElement("BUTTON");
+paperButton.textContent = paper.toLocaleUpperCase();
+gameDiv.appendChild(paperButton);
+paperButton.setAttribute("id", "paper")
+paperButton.addEventListener("click", () => {
+    playerTurn = paper;
+    playerAction();
+});
 
-const button3 = document.createElement("BUTTON");
-button3.textContent = "SCISSORS";
-gameDiv.appendChild(button3);
-button3.setAttribute("id", "scissors")
+const scissorsButton = document.createElement("BUTTON");
+scissorsButton.textContent = scissors.toLocaleUpperCase();
+gameDiv.appendChild(scissorsButton);
+scissorsButton.setAttribute("id", "scissors")
+scissorsButton.addEventListener("click", () => {
+    playerTurn = scissors;
+    playerAction();
+});
 
 const mainDiv = document.createElement("div");
 mainDiv.classList.add("main");
@@ -79,49 +91,18 @@ mainDiv.appendChild(proclamation);
 proclamation.setAttribute("id","proclamation");
 proclamation.innerHTML = "AND THE WINNER IS:";
 
-
-const rockButton = document.querySelector("#rock");
-rockButton.addEventListener("click", () => {
-    playerTurn = rock;
-    const result = (theGame(playerTurn, computerTurn()));
-    winners.push(result);
-    previousWinners.innerHTML += " " + result;
-    console.log(winners);
-});
-
-const paperButton = document.querySelector("#paper");
-paperButton.addEventListener("click", () => {
-    playerTurn = paper;
-    const result = (theGame(playerTurn, computerTurn()));
-    winners.push(result);
-    previousWinners.innerHTML += " " + result;
-    console.log(winners);
-});
-
-const scissorsButton = document.querySelector("#scissors");
-scissorsButton.addEventListener("click", () => {
-    playerTurn = scissors;
-    const result = (theGame(playerTurn, computerTurn()));
-    winners.push(result);
-    previousWinners.innerHTML += " " + result;
-    console.log(winners);
-});
-
-
 const wrapper = document.getElementById('game');
-
-
 wrapper.addEventListener('click', (event) => {
     const isButton = event.target.nodeName === 'BUTTON';
-    clicked++;
     if (!isButton) {
       return;
+    }else {
+        clicked++;
     }
     currentRound();
     arrayOfPreviousRounds();
    //console.dir(event.target.id);
     whenFiveTimes();
-
 })
 
 const whenFiveTimes = () => {
@@ -171,4 +152,11 @@ const currentRound = () => {
 
 const arrayOfPreviousRounds = () => {
     previousWinners.innerHTML = "Winners of previous rounds: " + winners;
+}
+
+const playerAction = () => {
+    const result = theGame(playerTurn, computerTurn());
+    winners.push(result);
+    previousWinners.innerHTML += " " + result;
+    console.log(winners);
 }
