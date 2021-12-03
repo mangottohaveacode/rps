@@ -49,8 +49,7 @@ gameDiv.appendChild(rockButton);
 rockButton.textContent = rock.toLocaleUpperCase();
 rockButton.setAttribute("id", "rock");
 rockButton.addEventListener("click", () => {
-    playerTurn = rock;
-    playerAction();
+    playerAction(rock);
 });
 
 const paperButton = document.createElement("BUTTON");
@@ -58,8 +57,7 @@ paperButton.textContent = paper.toLocaleUpperCase();
 gameDiv.appendChild(paperButton);
 paperButton.setAttribute("id", "paper")
 paperButton.addEventListener("click", () => {
-    playerTurn = paper;
-    playerAction();
+    playerAction(paper);
 });
 
 const scissorsButton = document.createElement("BUTTON");
@@ -67,8 +65,7 @@ scissorsButton.textContent = scissors.toLocaleUpperCase();
 gameDiv.appendChild(scissorsButton);
 scissorsButton.setAttribute("id", "scissors")
 scissorsButton.addEventListener("click", () => {
-    playerTurn = scissors;
-    playerAction();
+    playerAction(scissors);
 });
 
 const mainDiv = document.createElement("div");
@@ -154,8 +151,8 @@ const arrayOfPreviousRounds = () => {
     previousWinners.innerHTML = "Winners of previous rounds: " + winners;
 }
 
-const playerAction = () => {
-    const result = theGame(playerTurn, computerTurn());
+const playerAction = (playerChoice) => {
+    const result = theGame(playerChoice, computerTurn());
     winners.push(result);
     previousWinners.innerHTML += " " + result;
     console.log(winners);
