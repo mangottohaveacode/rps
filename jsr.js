@@ -91,15 +91,15 @@ proclamation.innerHTML = "AND THE WINNER IS:";
 const wrapper = document.getElementById('game');
 wrapper.addEventListener('click', (event) => {
     const isButton = event.target.nodeName === 'BUTTON';
-    if (!isButton) {
-      return;
-    }else {
+    if (isButton) {
         clicked++;
+        currentRound();
+        arrayOfPreviousRounds();
+        //console.dir(event.target.id);
+        whenFiveTimes();
+    }else {
+        return;
     }
-    currentRound();
-    arrayOfPreviousRounds();
-   //console.dir(event.target.id);
-    whenFiveTimes();
 })
 
 const whenFiveTimes = () => {
