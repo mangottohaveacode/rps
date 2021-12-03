@@ -1,6 +1,6 @@
-const rockValue = "rock";
-const paperValue = "paper";
-const scissorsValue = "scissors";
+const rock = "rock";
+const paper = "paper";
+const scissors = "scissors";
 
 const computerWinner = "computer";
 const playerWinner = "player";
@@ -17,7 +17,7 @@ let drawWins = 0;
 
 
 const computerTurn = () => {
-    let array = [rockValue,paperValue,scissorsValue];
+    let array = [rock,paper,scissors];
     let randomNumber = Math.floor(Math.random() * array.length);
     return array[randomNumber];
 }
@@ -82,7 +82,7 @@ proclamation.innerHTML = "AND THE WINNER IS:";
 
 const rockButton = document.querySelector("#rock");
 rockButton.addEventListener("click", () => {
-    playerTurn = rockValue;
+    playerTurn = rock;
     const result = (theGame(playerTurn, computerTurn()));
     winners.push(result);
     previousWinners.innerHTML += " " + result;
@@ -91,7 +91,7 @@ rockButton.addEventListener("click", () => {
 
 const paperButton = document.querySelector("#paper");
 paperButton.addEventListener("click", () => {
-    playerTurn = paperValue;
+    playerTurn = paper;
     const result = (theGame(playerTurn, computerTurn()));
     winners.push(result);
     previousWinners.innerHTML += " " + result;
@@ -100,7 +100,7 @@ paperButton.addEventListener("click", () => {
 
 const scissorsButton = document.querySelector("#scissors");
 scissorsButton.addEventListener("click", () => {
-    playerTurn = scissorsValue;
+    playerTurn = scissors;
     const result = (theGame(playerTurn, computerTurn()));
     winners.push(result);
     previousWinners.innerHTML += " " + result;
