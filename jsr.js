@@ -1,39 +1,43 @@
+const rockValue = "rock";
+const paperValue = "paper";
+const scissorsValue = "scissors";
+
+const computerWinner = "computer";
+const playerWinner = "player";
+const drawWinner = "draw";
+
+let clicked = 0;
+
+let winners= [];
+let currentRoundWinner = "";
+
+let compWins = 0;
+let playerWins = 0;
+let drawWins = 0;
+
+
 const computerTurn = () => {
-    let value = "";
-    let randomNumber = Math.floor(Math.random() * 3) +1;
-    if(randomNumber === 1){
-        value = "rock";
-    }else if(randomNumber === 2){
-        value="paper";
-    }else{
-        value = "scissors";
-    }
-    return value.toLowerCase();
+    let array = [rockValue,paperValue,scissorsValue];
+    let randomNumber = Math.floor(Math.random() * array.length);
+    return array[randomNumber];
 }
 
 const theGame = (playerChoice, computerSelection) => {
-    let winner = "";
     let playerSelection = playerChoice.toLowerCase();
     if(playerSelection === "rock" && computerSelection === "paper"){
-        winner = "computer";
-        return winner; 
+        return computerWinner;
     }else if(playerSelection === "rock" && computerSelection === "scissors"){
-        winner = "player"
-        return winner;  
+        return playerWinner;
     }else if(playerSelection === "paper" && computerSelection === "scissors"){
-        winner = "computer"
-        return winner; 
+        return computerWinner;
     }else if (playerSelection === "paper" && computerSelection === "rock"){
-        winner = "player";
-        return winner;
+        return playerWinner;
     }else if(playerSelection === "scissors" && computerSelection === "rock"){
-        winner = "computer";
-        return winner;
+        return computerWinner;
     }else if(playerSelection === "scissors" && computerSelection === "paper"){
-        winner = "player";
-        return winner; 
+        return playerWinner;
     }else { 
-        return "draw";
+        return drawWinner;
     }
 }
 
@@ -55,15 +59,10 @@ button3.textContent = "SCISSORS";
 gameDiv.appendChild(button3);
 button3.setAttribute("id", "scissors")
 
-
-
 const mainDiv = document.createElement("div");
 mainDiv.classList.add("main");
 document.body.appendChild(mainDiv);
 mainDiv.style.border = "2px solid black";
-
-
-let clicked = 0;
 
 const winnerOfRound = document.createElement("div");
 mainDiv.appendChild(winnerOfRound);
@@ -80,48 +79,37 @@ mainDiv.appendChild(proclamation);
 proclamation.setAttribute("id","proclamation");
 proclamation.innerHTML = "AND THE WINNER IS:";
 
-let winners= [];
-let currentRoundWinner = "";
-// let clicked = 0;
 
-const rock = document.querySelector("#rock");
-rock.addEventListener("click", () => {
-    playerTurn = "rock";
-    let whoWon = (theGame(playerTurn, computerTurn()));
-    const result = whoWon;
+const rockButton = document.querySelector("#rock");
+rockButton.addEventListener("click", () => {
+    playerTurn = rockValue;
+    const result = (theGame(playerTurn, computerTurn()));
     winners.push(result);
     previousWinners.innerHTML += " " + result;
     console.log(winners);
-    
 });
 
-const paper = document.querySelector("#paper");
-paper.addEventListener("click", () => {
-    playerTurn = "paper";
-    let whoWon = (theGame(playerTurn, computerTurn()));
-    const result = whoWon;
-    winners.push(result);
-    previousWinners.innerHTML += " " + result;
-    console.log(winners); + " wins."
-    
-});
-
-const scissors = document.querySelector("#scissors");
-scissors.addEventListener("click", () => {
-    playerTurn = "scissors";
-    let whoWon = (theGame(playerTurn, computerTurn()));
-    const result = whoWon;
+const paperButton = document.querySelector("#paper");
+paperButton.addEventListener("click", () => {
+    playerTurn = paperValue;
+    const result = (theGame(playerTurn, computerTurn()));
     winners.push(result);
     previousWinners.innerHTML += " " + result;
     console.log(winners);
-    
+});
+
+const scissorsButton = document.querySelector("#scissors");
+scissorsButton.addEventListener("click", () => {
+    playerTurn = scissorsValue;
+    const result = (theGame(playerTurn, computerTurn()));
+    winners.push(result);
+    previousWinners.innerHTML += " " + result;
+    console.log(winners);
 });
 
 
 const wrapper = document.getElementById('game');
-let compWins = 0;
-let playerWins = 0;
-let drawWins = 0;
+
 
 wrapper.addEventListener('click', (event) => {
     const isButton = event.target.nodeName === 'BUTTON';
@@ -182,8 +170,5 @@ const currentRound = () => {
 }
 
 const arrayOfPreviousRounds = () => {
-    let pastWinners = [];
-    pastWinners = winners;
-    previousWinners.innerHTML = "Winners of previous rounds: " + pastWinners;
-
+    previousWinners.innerHTML = "Winners of previous rounds: " + winners;
 }
