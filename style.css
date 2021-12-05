@@ -6,19 +6,26 @@ button {
   align-items: center;
   justify-content: center;
   font-family: "Segoe UI", Tahoma;
+  border-radius: 18%;
+  padding: 70px;
 }
 .buttons {
   display: flex;
   justify-content: center;
-  padding-top: 10%;
+  margin-top: 3%;
   gap: 20px;
   text-align: center;
   padding: auto;
 }
 .main > div {
-  border: 1px solid slateblue;
+  flex: 1;
+  border: 5px solid seashell;
+  border-radius: 6%;
   text-align: center;
   padding: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  gap: 5px;
 }
 .main {
   margin-top: 20px;
@@ -33,6 +40,27 @@ button {
 #winners {
   flex: 1;
 }
+@import url("https://fonts.googleapis.com/css2?family=Mukta:wght@700&display=swap");
+
+body {
+  font-family: "Mukta";
+  background-color: gainsboro;
+}
 #winnerOfRound {
   flex: 1;
+}
+#title {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid blue;
+  margin: auto;
+  font-size: 40px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  background-color: slategrey;
+  padding: 50px;
+}
+#score {
+  display: flex;
+  justify-content: center;
 }
